@@ -1,0 +1,22 @@
+# traefik/whoami behind devopsy-traefik: answers with the request it got,
+# headers included, which makes routing, TLS and client IPs easy to check.
+services:
+  web:
+    image: traefik/whoami
+    restart: unless-stopped
+    # Not root, not the deploy user (1000): see the devopsy workspace notes.
+    user: "10001:10001"
+    read_only: true
+    labels:
+      - traefik.enable=true
+      # <project>.<server's public domain> plus the target's DEVOPSY_DOMAINS.
+      - traefik.http.routers.${DEVOPSY_PROJECT_NAME:-app}.rule=${DEVOPSY_HOST_RULE:-Host(`app.localhost`)}
+      # letsencrypt1 (HTTP-01, the default), acmedns or cloudflare (DNS-01),
+      # per target, in targets.yaml.
+      - traefik.http.routers.${DEVOPSY_PROJECT_NAME:-app}.tls.certresolver=${CERTRESOLVER:-letsencrypt1}
+    networks: [default, traefik]
+
+networks:
+  traefik:
+    name: traefik-main
+    external: true

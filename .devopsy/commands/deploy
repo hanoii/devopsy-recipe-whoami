@@ -1,0 +1,5 @@
+#!/bin/sh
+# Run on the server by `devopsy @<target> release deploy`.
+set -eu
+devopsy pull --quiet
+devopsy up -d --wait --remove-orphans

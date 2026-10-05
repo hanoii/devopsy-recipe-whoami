@@ -1,0 +1,10 @@
+# Environments of this project. Committed: no secrets here.
+prod:
+  host: devopsy@203.0.113.10
+  path: /srv/whoami-prod
+  # env:
+  #   DEVOPSY_DOMAINS: whoami.example.org www.whoami.example.org
+  #   CERTRESOLVER: acmedns       # to get the certificate before switching DNS
+staging:
+  host: devopsy@203.0.113.10
+  path: /srv/whoami-staging
