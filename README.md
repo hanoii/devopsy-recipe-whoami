@@ -38,7 +38,7 @@ prod:
 
 ## Locally
 
-Without a server's public domain, the host is `whoami-recipe.localhost`, served
+Without a server's public domain, the host is `devopsy-recipe-whoami.localhost`, served
 by a local devopsy-traefik:
 
 ```sh
