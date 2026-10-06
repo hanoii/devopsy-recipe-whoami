@@ -7,6 +7,13 @@ targets, releases, domains and certificates, or as a starting point.
 
 ## Try it
 
+Point the targets at your server in `.devopsy/.env` (gitignored), or in the
+environment:
+
+```sh
+echo DEVOPSY_TARGET_HOST=devopsy@203.0.113.10 >> .devopsy/.env
+```
+
 ```sh
 devopsy @prod release deploy   # prints https://whoami-prod.<server's public domain>
 devopsy @prod domains          # DNS, challenge and certificate per host, and what next
@@ -16,7 +23,8 @@ devopsy @staging release deploy
 ```
 
 `targets.yaml` defines `prod` and `staging` on the same server, each with its
-own path, so its own containers and URL.
+own path, so its own containers and URL. `DEVOPSY_TARGET_HOST_STAGING` puts
+staging on another server.
 
 ## A custom domain
 

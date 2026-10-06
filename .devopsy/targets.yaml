@@ -1,10 +1,10 @@
 # Environments of this project. Committed: no secrets here.
+# Hosts come from DEVOPSY_TARGET_HOST (or DEVOPSY_TARGET_HOST_<TARGET>), in
+# .devopsy/.env or the environment, like DEVOPSY_TARGET_HOST=devopsy@203.0.113.10.
 prod:
-  host: devopsy@203.0.113.10
   path: /srv/whoami-prod
   env:
     DEVOPSY_DOMAINS: whoami.example.org
     CERTRESOLVER: acmedns       # to get the certificate before switching DNS
 staging:
-  host: devopsy@203.0.113.10
   path: /srv/whoami-staging
