@@ -1,4 +1,5 @@
 #!/bin/sh
+## Description: Pull the image and roll out (run on the server by release)
 # Run on the server by `devopsy @<target> release deploy`.
 set -eu
 devopsy pull --quiet
