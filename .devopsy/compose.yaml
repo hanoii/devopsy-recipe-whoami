@@ -4,7 +4,8 @@ services:
   web:
     image: traefik/whoami
     restart: unless-stopped
-    # Not root, not the deploy user (1000): see the devopsy workspace notes.
+    # Not root, not the deploy user (1000): see "Conventions" in the devopsy
+    # workspace README.
     user: "10001:10001"
     read_only: true
     labels:
