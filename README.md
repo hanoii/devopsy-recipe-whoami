@@ -52,3 +52,7 @@ by a local devopsy-traefik:
 ```sh
 devopsy up -d
 ```
+
+## License
+
+MIT, so you can start your own project from it. See [LICENSE](LICENSE).
