@@ -1,7 +1,7 @@
 #!/bin/sh
 ## Description: Pull the image and roll out (run on the server by release)
 # The targets' release and rollback remote step (targets.yaml), run on the
-# server by `devopsy @<target> release` and `rollback`.
+# server by `devopsy @<target> --release` and `--rollback`.
 set -eu
 devopsy pull --quiet
 devopsy up -d --wait --remove-orphans
