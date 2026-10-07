@@ -14,16 +14,13 @@ environment:
 echo DEVOPSY_TARGET_HOST=devopsy@203.0.113.10 >> .devopsy/.env
 ```
 
-Optionally, give it the server's public domain, so each environment gets
-`<project>.<domain>` (once per target; it stays in the server's
-`shared/.env`, out of this repository):
+Each environment also gets `<project>.<server's public domain>`, which
+devopsy asks the server's Traefik for at each release. Override it, or set
+it empty for none, per target: `devopsy @prod --vars set --show
+DEVOPSY_PUBLIC_DOMAIN`.
 
 ```sh
-devopsy @prod --vars set --show DEVOPSY_PUBLIC_DOMAIN   # like vm1.example.com
-```
-
-```sh
-devopsy @prod release          # runs deploy, prints https://whoami-prod.<DEVOPSY_PUBLIC_DOMAIN>
+devopsy @prod release          # runs deploy, prints https://whoami-prod.<server's public domain>
 devopsy @prod domains          # DNS, challenge and certificate per host, and what next
 devopsy @prod logs -f web
 devopsy @prod releases
