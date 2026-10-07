@@ -15,11 +15,11 @@ echo DEVOPSY_TARGET_HOST=devopsy@203.0.113.10 >> .devopsy/.env
 ```
 
 ```sh
-devopsy @prod release deploy   # prints https://whoami-prod.<server's public domain>
+devopsy @prod release          # runs deploy, prints https://whoami-prod.<server's public domain>
 devopsy @prod domains          # DNS, challenge and certificate per host, and what next
 devopsy @prod logs -f web
 devopsy @prod releases
-devopsy @staging release deploy
+devopsy @staging release
 ```
 
 `targets.yaml` defines `prod` and `staging` on the same server, each with its
