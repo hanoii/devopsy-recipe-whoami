@@ -6,6 +6,7 @@
 # with: devopsy @<target> --vars set --show DEVOPSY_WILDCARD_DOMAIN
 prod:
   path: /srv/whoami-prod
+  mode: image
   env:
     DEVOPSY_DOMAINS: whoami.example.org
     CERTRESOLVER: acmedns       # to get the certificate before switching DNS
@@ -15,6 +16,7 @@ prod:
     remote: deploy
 staging:
   path: /srv/whoami-staging
+  mode: image
   release:
     remote: deploy
   rollback:
