@@ -1,9 +1,16 @@
-# devopsy-recipe-whoami
+# devopsy-template-whoami
 
 The smallest devopsy project: [traefik/whoami](https://github.com/traefik/whoami)
-behind a [devopsy-traefik](https://github.com/hanoii/devopsy-traefik) server,
+behind a [devopsy-template-traefik](https://github.com/hanoii/devopsy-template-traefik) server,
 released with [devopsy](https://github.com/hanoii/devopsy-cli). Use it to try
 targets, releases, domains and certificates, or as a starting point.
+
+## Using this template
+
+A starting point to own, not a dependency: start a project from it on
+GitHub ("Use this template"), or clone it and keep this repository as a
+remote (`upstream`) to pull its changes when you choose. Nothing updates
+your copy, or what runs on your servers, but your own release.
 
 ## Try it
 
@@ -15,7 +22,7 @@ echo DEVOPSY_TARGET_HOST=devopsy@203.0.113.10 >> .devopsy/.env
 ```
 
 Each environment also gets `<project>.<server's wildcard domain>`, which
-each release imports from the server's proxy (devopsy-traefik), through the
+each release imports from the server's proxy (devopsy-template-traefik), through the
 `devopsy.import` label in `compose.yaml`: a release fails while no proxy
 runs. The release says what it imported; `devopsy @prod --debug imports`
 shows it later, and whether the proxy has changed it since. Override it,
@@ -47,7 +54,7 @@ prod:
 
 - **Default, HTTP-01:** point the domain at the server (an A record, or a
   CNAME to the wildcard URL), then release. `devopsy @<server>-traefik
-  domains whoami-prod` (devopsy-traefik) shows when it is live; if the
+  domains whoami-prod` (devopsy-template-traefik) shows when it is live; if the
   certificate came too early, `--retry`. `devopsy --probe whoami.example.org`
   checks it from your machine.
 - **Before switching DNS, acme-dns:** add `CERTRESOLVER: acmedns`, release,
@@ -59,7 +66,7 @@ prod:
 ## Locally
 
 Locally, without a wildcard domain, the host is
-`devopsy-recipe-whoami.localhost`, served by a local devopsy-traefik:
+`devopsy-template-whoami.localhost`, served by a local devopsy-template-traefik:
 
 ```sh
 devopsy up -d
