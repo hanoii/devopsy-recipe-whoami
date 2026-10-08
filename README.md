@@ -18,7 +18,7 @@ Point the targets at your server in `.devopsy/.env` (gitignored), or in the
 environment:
 
 ```sh
-echo DEVOPSY_TARGET_HOST=devopsy@203.0.113.10 >> .devopsy/.env
+echo DEVOPSY_SERVER=devopsy@203.0.113.10 >> .devopsy/.env
 ```
 
 Each environment also gets `<project>.<server's wildcard domain>`, which
@@ -42,7 +42,7 @@ devopsy @pr-12 --destroy         # and gone with it
 `.devopsy/config.yaml` names the project (`whoami`) and defines `prod`,
 `staging` and `pr-*` targets, each in its own directory on the server
 (`whoami/prod`, under its release root), so its own containers and URL.
-`DEVOPSY_TARGET_HOST_STAGING` puts staging on another server. Without a wildcard domain or `DEVOPSY_DOMAINS`, a
+`DEVOPSY_SERVER_STAGING` (or `devopsy @<server>:staging`) puts staging on another server. Without a wildcard domain or `DEVOPSY_DOMAINS`, a
 released environment has no host at all: `--release` says so.
 
 ## A custom domain
@@ -50,7 +50,7 @@ released environment has no host at all: `--release` says so.
 In `config.yaml`, give the target its domains and release again:
 
 ```yaml
-targets:
+environments:
   prod:
     env:
       DEVOPSY_DOMAINS: whoami.example.org
