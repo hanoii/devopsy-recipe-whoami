@@ -35,21 +35,25 @@ devopsy @<server>-traefik domains whoami-prod   # DNS, challenge and certificate
 devopsy @prod logs -f web
 devopsy @prod --releases
 devopsy @staging --release
+devopsy @pr-12 --release         # any pr-* target: one per pull request
+devopsy @pr-12 --destroy         # and gone with it
 ```
 
-`targets.yaml` defines `prod` and `staging` on the same server, each with its
-own path, so its own containers and URL. `DEVOPSY_TARGET_HOST_STAGING` puts
-staging on another server. Without a wildcard domain or `DEVOPSY_DOMAINS`, a
+`.devopsy/config.yaml` names the project (`whoami`) and defines `prod`,
+`staging` and `pr-*` targets, each in its own directory on the server
+(`whoami/prod`, under its release root), so its own containers and URL.
+`DEVOPSY_TARGET_HOST_STAGING` puts staging on another server. Without a wildcard domain or `DEVOPSY_DOMAINS`, a
 released environment has no host at all: `--release` says so.
 
 ## A custom domain
 
-In `targets.yaml`, give the target its domains and release again:
+In `config.yaml`, give the target its domains and release again:
 
 ```yaml
-prod:
-  env:
-    DEVOPSY_DOMAINS: whoami.example.org
+targets:
+  prod:
+    env:
+      DEVOPSY_DOMAINS: whoami.example.org
 ```
 
 - **Default, HTTP-01:** point the domain at the server (an A record, or a
