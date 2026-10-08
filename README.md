@@ -15,13 +15,14 @@ echo DEVOPSY_TARGET_HOST=devopsy@203.0.113.10 >> .devopsy/.env
 ```
 
 Each environment also gets `<project>.<server's wildcard domain>`, which
-devopsy asks the server's Traefik for at each release. Override it, or set
-it empty for none, per target: `devopsy @prod --vars set --show
+each release imports from the server's proxy (devopsy-traefik), through the
+`devopsy.import` label in `compose.yaml`: a release fails while no proxy
+runs. Override it, or set it empty for none, per target: `devopsy @prod --vars set --show
 DEVOPSY_WILDCARD_DOMAIN`.
 
 ```sh
 devopsy @prod --release          # runs deploy, prints https://whoami-prod.<server's wildcard domain>
-devopsy @prod --domains          # DNS, challenge and certificate per host, and what next
+devopsy @<server>-traefik domains whoami-prod   # DNS, challenge and certificate per host, and what next
 devopsy @prod logs -f web
 devopsy @prod --releases
 devopsy @staging --release
@@ -43,12 +44,15 @@ prod:
 ```
 
 - **Default, HTTP-01:** point the domain at the server (an A record, or a
-  CNAME to the wildcard URL), then release. `devopsy @prod --domains` shows when
-  it is live; if the certificate came too early, `--retry`.
+  CNAME to the wildcard URL), then release. `devopsy @<server>-traefik
+  domains whoami-prod` (devopsy-traefik) shows when it is live; if the
+  certificate came too early, `--retry`. `devopsy --probe whoami.example.org`
+  checks it from your machine.
 - **Before switching DNS, acme-dns:** add `CERTRESOLVER: acmedns`, release,
-  and `devopsy @prod --domains` prints the `_acme-challenge` CNAME to create.
-  Once it exists, `devopsy @prod --domains --retry` gets the certificate while
-  the domain still points elsewhere; then switch DNS.
+  and `devopsy @<server>-traefik domains whoami-prod` prints the
+  `_acme-challenge` CNAME to create. Once it exists, the same with `--retry`
+  gets the certificate while the domain still points elsewhere; then switch
+  DNS.
 
 ## Locally
 
