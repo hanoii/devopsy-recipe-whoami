@@ -14,7 +14,7 @@ your copy, or what runs on your servers, but your own release.
 
 ## Try it
 
-Point the targets at your server in `.devopsy/.env` (gitignored), or in the
+Point it at your server in `.devopsy/.env` (gitignored), or in the
 environment:
 
 ```sh
@@ -40,7 +40,7 @@ devopsy @pr-12 --destroy         # and gone with it
 ```
 
 `.devopsy/config.yaml` names the project (`whoami`) and defines `prod`,
-`staging` and `pr-*` targets, each in its own directory on the server
+`staging` and `pr-*` environments, each in its own directory on the server
 (`whoami/prod`, under its release root), so its own containers and URL.
 `DEVOPSY_SERVER_STAGING` (or `devopsy @<server>:staging`) puts staging on another server. Without a wildcard domain or `DEVOPSY_DOMAINS`, a
 released environment has no host at all: `--release` says so.
