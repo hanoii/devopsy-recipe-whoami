@@ -43,7 +43,12 @@ devopsy @pr-12 --destroy         # and gone with it
 `staging` and `pr-*` environments, each in its own directory on the server
 (`whoami/prod`, under its release root), so its own containers and URL.
 `DEVOPSY_SERVER_STAGING` (or `devopsy @<server>:staging`) puts staging on another server. Without a wildcard domain or `DEVOPSY_DOMAINS`, a
-released environment has no host at all: `--release` says so.
+released environment has no host at all: `deploy` says so.
+
+The hosts come from `.devopsy/capabilities/env/compute`, which devopsy runs
+before every command: `SITE_HOSTS`, `SITE_HOST`, `SITE_URL` and
+`SITE_HOST_RULE` (the router's rule), from the compose project name, the
+imported wildcard domain and `DEVOPSY_DOMAINS`. `devopsy --env` shows them.
 
 ## A custom domain
 
@@ -69,8 +74,8 @@ environments:
 
 ## Locally
 
-Locally, without a wildcard domain, the host is
-`devopsy-template-whoami.localhost`, served by a local devopsy-template-traefik:
+Locally, without a wildcard domain, the host is `whoami.localhost` (the
+config's project name), served by a local devopsy-template-traefik:
 
 ```sh
 devopsy up -d

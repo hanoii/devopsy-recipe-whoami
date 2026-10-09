@@ -5,3 +5,4 @@
 set -eu
 devopsy pull --quiet
 devopsy up -d --wait --remove-orphans
+echo "deploy: ${SITE_URL:-no URL: no wildcard domain or DEVOPSY_DOMAINS}" >&2
