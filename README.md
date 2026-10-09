@@ -46,9 +46,10 @@ devopsy @pr-12 --destroy         # and gone with it
 released environment has no host at all: `deploy` says so.
 
 The hosts come from `.devopsy/capabilities/env/compute`, which devopsy runs
-before every command: `SITE_HOSTS`, `SITE_HOST`, `SITE_URL` and
-`SITE_HOST_RULE` (the router's rule), from the compose project name, the
-imported wildcard domain and `DEVOPSY_DOMAINS`. `devopsy --env` shows them.
+before every command: `SITE_HOST_RULE` (the router's rule) and `SITE_URL`,
+from the compose project name, the imported wildcard domain and
+`DEVOPSY_DOMAINS`. `devopsy --env` shows them. Print more there if your
+project needs them.
 
 ## A custom domain
 
