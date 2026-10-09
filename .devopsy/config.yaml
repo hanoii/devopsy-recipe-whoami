@@ -12,6 +12,7 @@ defaults:
   mode: image
   release: deploy
   rollback: deploy
+  destroy: destroy
 environments:
   prod:
     env:
