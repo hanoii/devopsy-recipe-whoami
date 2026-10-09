@@ -10,8 +10,8 @@
 project: whoami
 defaults:
   mode: image
-  release: {remote: deploy}
-  rollback: {remote: deploy}
+  release: deploy
+  rollback: deploy
 environments:
   prod:
     env:
