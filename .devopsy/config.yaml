@@ -20,3 +20,5 @@ environments:
   staging: {}
   "pr-*":                         # pull request environments: @pr-123
     releases: {keep: 1}
+  "demo-*":                       # dynamic demo environments: @demo-acme
+    releases: {keep: 1}
